@@ -3,7 +3,7 @@ public class Album extends Playlist {
 	
 	public Album(String PlayListName) {
 		super(PlayListName);
-		
+		//ListOfSongs Albums = new ListOfSongs();
 		// TODO Auto-generated constructor stub
 	}
 	String AlbumName = getPlayListName();
@@ -28,5 +28,7 @@ public class Album extends Playlist {
 	public void setArtist(String artist) {
 		Artist = artist;
 	}
+	
+	
 	
 }

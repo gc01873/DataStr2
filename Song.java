@@ -10,26 +10,30 @@ import java.util.Scanner;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 public class Song implements Serializable {
 	private String name;
 	private String artist; //Change to artist class
 	private int year;
-	private String Album; //Change to album class
+	private Playlist Album; //Change to album class
 	private String Genre;// change to genre class
 	private static int likes =0;
-	FileInputStream FIS;
-	BufferedInputStream BIS;
+	//FileInputStream FIS;
+	//BufferedInputStream BIS;
 	private String path;
 	//final JFXPanel fxP = new JFXPanel(); 
 	//Media hit = new Media(new File(this.path).toURI().toString());
-	MediaPlayer mediaPlayer; //= new MediaPlayer(hit);
+	public MediaPlayer mediaPlayer; //= new MediaPlayer(hit);
+
 
 	public static void main(String[] args) throws InterruptedException {
-		Song test = new Song("Robbery","Juice WRLD - Robbery (Lyrics).mp3");
-		test.Play();
+		//Song test = new Song("Robbery","Juice WRLD - Robbery (Lyrics).mp3");
+	//	test.Play();
+	/*	Thread.sleep(10000);
+		test.Pause();
 		Thread.sleep(10000);
-		test.Stop();
+		test.Play();
 		/*final JFXPanel fxP = new JFXPanel(); 
 	String bip = "Juice WRLD - Robbery (Lyrics).mp3";
 	Media hit = new Media(new File(bip).toURI().toString());
@@ -43,7 +47,7 @@ public class Song implements Serializable {
 	public static void setLikes(int likes) {
 		Song.likes = likes;
 	}
-	public Song(String name, String artist, int year,String Album, String path){
+	public Song(String name, String artist, int year,Playlist Album, String path){
 		this.name = name;
 		this.artist = artist;
 		this.year = year;
@@ -62,6 +66,7 @@ public class Song implements Serializable {
 	public MediaPlayer MediaPlayer() {
 		final JFXPanel fxP = new JFXPanel(); 
 		Media hit = new Media(new File(this.path).toURI().toString());
+		
 		return new MediaPlayer(hit);
 	}
 
@@ -70,14 +75,23 @@ public class Song implements Serializable {
 		/*final JFXPanel fxP = new JFXPanel(); 
 		Media hit = new Media(new File(this.path).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(hit);*/
+		if(mediaPlayer==null) {
 		mediaPlayer = MediaPlayer();
 		mediaPlayer.play();
+		}
+		else 
+			mediaPlayer.play();
+	}
+	public void Stop() {
+		if(mediaPlayer != null)
+		mediaPlayer.stop();
 	}
 
 
-	public void Stop() {
+	public void Pause() {
 		if(mediaPlayer != null)
 			mediaPlayer.pause();
+		//mediaPlayer.p
 	}
 
 	public String getName() {
@@ -98,11 +112,11 @@ public class Song implements Serializable {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public String getAlbum() {
+	public Playlist getAlbum() {
 		return Album;
 	}
-	public void setAlbum(String album) {
-		Album = album;
+	public void setAlbum(Playlist playlist) {
+		Album = playlist;
 	}
 	public String getGenre() {
 		return Genre;
