@@ -1,10 +1,17 @@
 
 public class Artist {
-public String Name;
-public Playlist Discography = new Playlist(Name + " Discography ");
-int numOfArtistSongs = Discography.getNumOfSongs();
-
-
+	public String Name;
+	public Playlist Discography = new Playlist(Name + " Discography ");
+	int numOfArtistSongs = Discography.getNumOfSongs();
+	public void addDisco() {
+		public Playlist Lib = new Playlist(Name + " Library ");
+		for(Song NowPlaying :Lib.getListOfSongs()) {
+			if(NowPlaying.getArtist()==this.getName()) {
+				Discography.AddSong(NowPlaying);
+		}
+	}
+}
+}
 public Artist(String Name) {
 	this.Name = Name;
 }

@@ -6,7 +6,9 @@ import javafx.scene.media.MediaPlayer.Status;
 public  class Playlist {
 	private String PlayListName;
 	private ArrayList<Song> ListOfSongs= new ArrayList<Song>(); 
+//	public static Song NowPlaying;
 	public Iterator move = ListOfSongs.listIterator();
+	
 	public Iterator getMove() {
 		return move;
 	}
@@ -17,8 +19,13 @@ public  class Playlist {
 
 	private int numOfSongs = 0;
 
-
-
+	public static void main(String[] args)  {
+	
+		Playlist First = new Playlist("SongLibrary");
+		/* This must be changed to create a songs from a song library from a song library
+		 * Using a for loop to add all of the songs to.
+		 */
+	}
 	public Playlist(String PlayListName) {
 		this.PlayListName = PlayListName;
 		//	ListOfSongs = new ArrayList<Song>();
@@ -43,18 +50,23 @@ public  class Playlist {
 	}
 	public void Start() throws InterruptedException {//throws InterruptedException {
 		//for(int i=0; i<ListOfSongs.lastIndexOf();i++) {
-		for(Song NowPlaying :this.getListOfSongs()) {
-	
-			Status status = NowPlaying.mediaPlayer.getStatus();
-			if(status == Status.UNKNOWN) {
-				System.out.println("Music Status Error");
+		for(final Song NowPlaying :this.getListOfSongs()) {
+	NowPlaying.Play();
+	System.out.println("Now Playing : " + NowPlaying.getName());
+	if(NowPlaying.isPlaying()==true) {
+		System.out.println(NowPlaying.getMediaPlayer().onReadyProperty());
+	//	if()
+	}
+		//	Status status = NowPlaying.mediaPlayer.getStatus().valueOf(PlayListName);
+		//	if(status == Status.UNKNOWN) {
+			//	System.out.println("Music Status Error");
 				
-			}
+		//	}
 			//Song NowPlaying = ListOfSongs.get(i);
 			//System.out.println(NowPlaying.getName());
-			NowPlaying.Play();
-			if(status == status.PAUSED||status == Status.STOPPED ||status == Status.READY) {
-				NowPlaying.Play();
+			//NowPlaying.Play();
+		//	if(status == status.PAUSED||status == Status.STOPPED ||status == Status.READY) {
+		//		NowPlaying.Play();
 				System.out.println("Now Playing : " + NowPlaying.getName());
 			}
 			//System.out.println("Now Playing : " + NowPlaying.getName() );
@@ -69,7 +81,7 @@ public  class Playlist {
 			//Thread.sleep(NowPlaying.duration);
 			//System.out.println(NowPlaying.duration);
 		}
-	}
+	//}
 
 	public int getNumOfSongs() {
 		return numOfSongs;

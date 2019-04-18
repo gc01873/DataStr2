@@ -90,12 +90,13 @@ public class Song implements Serializable {
 	}
 */
 
-	public void Play() {
+	public boolean Play() {
 		
 		if(mediaPlayer==null) {
 		//mediaPlayer = MediaPlayer();
 		mediaPlayer.play();
 		System.out.println(mediaPlayer.getTotalDuration());	
+		return true;
 		}
 		
 		else 	{
@@ -105,6 +106,7 @@ public class Song implements Serializable {
 			System.out.println("This is coming from the second if statement");	
 			System.out.println(mediaPlayer.getTotalDuration());
 		}
+		return true;
 	}
 	public void Stop() {
 		if(mediaPlayer != null)
@@ -156,5 +158,10 @@ public class Song implements Serializable {
 	public void setPath(String path) {
 		this.path = path;
 	}
-
+public boolean isPlaying() {
+	if (this.Play()==true) 
+		return true;
+	else return false;
+	
+}
 }
