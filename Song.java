@@ -19,13 +19,21 @@ public class Song implements Serializable {
 	private Playlist Album; //Change to album class
 	private String Genre;// change to genre class
 	private static int likes =0;
-	//FileInputStream FIS;
-	//BufferedInputStream BIS;
+	
 	private String path;
-	//final JFXPanel fxP = new JFXPanel(); 
-	//Media hit = new Media(new File(this.path).toURI().toString());
-	public MediaPlayer mediaPlayer; //= new MediaPlayer(hit);
+	
+	final JFXPanel fxP = new JFXPanel(); 
+	String bip;
+	Media hit; 
+	public static MediaPlayer mediaPlayer;
 
+	public MediaPlayer getMediaPlayer() {
+		return mediaPlayer;
+	}
+
+	public void setMediaPlayer(MediaPlayer mediaPlayer) {
+		this.mediaPlayer = mediaPlayer;
+	}
 
 	public static void main(String[] args) throws InterruptedException {
 		//Song test = new Song("Robbery","Juice WRLD - Robbery (Lyrics).mp3");
@@ -33,12 +41,13 @@ public class Song implements Serializable {
 	/*	Thread.sleep(10000);
 		test.Pause();
 		Thread.sleep(10000);
-		test.Play();
-		/*final JFXPanel fxP = new JFXPanel(); 
-	String bip = "Juice WRLD - Robbery (Lyrics).mp3";
+		test.Play();*/
+	/*final JFXPanel fxP = new JFXPanel(); 
+	String bip = Song.getPath();
 	Media hit = new Media(new File(bip).toURI().toString());
 	MediaPlayer mediaPlayer = new MediaPlayer(hit);
 	mediaPlayer.play();*/
+		
 	}
 
 	public static int getLikes() {
@@ -52,35 +61,50 @@ public class Song implements Serializable {
 		this.artist = artist;
 		this.year = year;
 		this.path = path;
+		this.bip = path;
 		this.Album = Album;
-
-
+		final JFXPanel fxP = new JFXPanel(); ;
+		this.hit = new Media(new File(bip).toURI().toString());
+		this.mediaPlayer = new MediaPlayer(hit);
+	/*	final JFXPanel fxP = new JFXPanel(); 
+		String bip = getPath();
+		Media hit = new Media(new File(bip).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(hit);*/
 
 	}
 
 	public Song(String name, String path){
 		this.name = name;
 		this.path = path;
+		this.bip = path;
+		final JFXPanel fxP = new JFXPanel(); ;
+		this.hit = new Media(new File(bip).toURI().toString());
+		this.mediaPlayer = new MediaPlayer(hit);
 	}
 
-	public MediaPlayer MediaPlayer() {
+	/*public  MediaPlayer MediaPlayer() {
 		final JFXPanel fxP = new JFXPanel(); 
 		Media hit = new Media(new File(this.path).toURI().toString());
 		
 		return new MediaPlayer(hit);
 	}
-
+*/
 
 	public void Play() {
-		/*final JFXPanel fxP = new JFXPanel(); 
-		Media hit = new Media(new File(this.path).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(hit);*/
+		
 		if(mediaPlayer==null) {
-		mediaPlayer = MediaPlayer();
+		//mediaPlayer = MediaPlayer();
 		mediaPlayer.play();
+		System.out.println(mediaPlayer.getTotalDuration());	
 		}
-		else 
+		
+		else 	{
+	
+		
 			mediaPlayer.play();
+			System.out.println("This is coming from the second if statement");	
+			System.out.println(mediaPlayer.getTotalDuration());
+		}
 	}
 	public void Stop() {
 		if(mediaPlayer != null)
