@@ -1,3 +1,5 @@
+package Home;
+
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -25,6 +27,13 @@ public class Song implements Serializable {
 	final JFXPanel fxP = new JFXPanel(); 
 	String bip;
 	Media hit; 
+	public Media getHit() {
+		return hit;
+	}
+
+	public void setHit(Media hit) {
+		this.hit = hit;
+	}
 	public static MediaPlayer mediaPlayer;
 
 	public MediaPlayer getMediaPlayer() {
@@ -37,7 +46,7 @@ public class Song implements Serializable {
 
 	public static void main(String[] args) throws InterruptedException {
 		//Song test = new Song("Robbery","Juice WRLD - Robbery (Lyrics).mp3");
-	//	test.Play();
+	//test.Play();
 	/*	Thread.sleep(10000);
 		test.Pause();
 		Thread.sleep(10000);

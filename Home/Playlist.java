@@ -1,9 +1,12 @@
+package Home;
+
+import java.io.Serializable;
 import java.util.ArrayList; 
 import java.util.Iterator;
 
 import javafx.scene.media.MediaPlayer.Status;
 
-public  class Playlist {
+public  class Playlist implements Serializable {
 	private String PlayListName;
 	private ArrayList<Song> ListOfSongs= new ArrayList<Song>(); 
 //	public static Song NowPlaying;
@@ -54,7 +57,8 @@ public  class Playlist {
 	NowPlaying.Play();
 	System.out.println("Now Playing : " + NowPlaying.getName());
 	if(NowPlaying.isPlaying()==true) {
-		System.out.println(NowPlaying.getMediaPlayer().onReadyProperty());
+		System.out.println(NowPlaying.getMediaPlayer().onReadyProperty().getValue());
+		
 	//	if()
 	}
 		//	Status status = NowPlaying.mediaPlayer.getStatus().valueOf(PlayListName);
@@ -69,6 +73,7 @@ public  class Playlist {
 		//		NowPlaying.Play();
 				System.out.println("Now Playing : " + NowPlaying.getName());
 			}
+	//	if(){
 			//System.out.println("Now Playing : " + NowPlaying.getName() );
 			//System.out.println(NowPlaying.mediaPlayer.getStatus());
 			//NowPlaying.Stop();

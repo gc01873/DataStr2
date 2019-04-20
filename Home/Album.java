@@ -1,5 +1,8 @@
+package Home;
 
-public class Album extends Playlist {
+import java.io.Serializable;
+
+public class Album extends Playlist implements Serializable {
 	
 	public Album(String PlayListName) {
 		super(PlayListName);
