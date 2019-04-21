@@ -15,6 +15,7 @@ public  class Playlist implements Serializable {
 	public Iterator getMove() {
 		return move;
 	}
+	
 
 	public void setMove(Iterator move) {
 		this.move = move;
@@ -31,9 +32,12 @@ public  class Playlist implements Serializable {
 	}
 	public Playlist(String PlayListName) {
 		this.PlayListName = PlayListName;
-		//	ListOfSongs = new ArrayList<Song>();
-	}
 
+	}
+	public Playlist(String PlayListName, String artist) {
+		this.PlayListName = PlayListName;
+		
+	}
 	public void AddSong(Song song) {
 		ListOfSongs.add(song);
 		//song.setAlbum(this); save for album class
@@ -51,40 +55,7 @@ public  class Playlist implements Serializable {
 		numOfSongs--;
 		return song;
 	}
-	public void Start() throws InterruptedException {//throws InterruptedException {
-		//for(int i=0; i<ListOfSongs.lastIndexOf();i++) {
-		for(final Song NowPlaying :this.getListOfSongs()) {
-	NowPlaying.Play();
-	System.out.println("Now Playing : " + NowPlaying.getName());
-	if(NowPlaying.isPlaying()==true) {
-		System.out.println(NowPlaying.getMediaPlayer().onReadyProperty().getValue());
-		
-	//	if()
-	}
-		//	Status status = NowPlaying.mediaPlayer.getStatus().valueOf(PlayListName);
-		//	if(status == Status.UNKNOWN) {
-			//	System.out.println("Music Status Error");
-				
-		//	}
-			//Song NowPlaying = ListOfSongs.get(i);
-			//System.out.println(NowPlaying.getName());
-			//NowPlaying.Play();
-		//	if(status == status.PAUSED||status == Status.STOPPED ||status == Status.READY) {
-		//		NowPlaying.Play();
-				System.out.println("Now Playing : " + NowPlaying.getName());
-			}
-	//	if(){
-			//System.out.println("Now Playing : " + NowPlaying.getName() );
-			//System.out.println(NowPlaying.mediaPlayer.getStatus());
-			//NowPlaying.Stop();
-		//	NowPlaying.Play();
-			
-		//	System.out.println(NowPlaying.MediaPlayer().startTimeProperty());
-			//Thread.sleep(5000);
-			//NowPlaying.Stop();
-			//NowPlaying.wait();
-			//Thread.sleep(NowPlaying.duration);
-			//System.out.println(NowPlaying.duration);
+	public void Start() throws InterruptedException {
 		}
 	//}
 

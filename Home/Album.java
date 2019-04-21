@@ -6,6 +6,12 @@ public class Album extends Playlist implements Serializable {
 	
 	public Album(String PlayListName) {
 		super(PlayListName);
+		
+		
+		}
+	public Album(String PlayListName, String artist) {
+		super(PlayListName, artist);
+		
 		//ListOfSongs Albums = new ListOfSongs();
 		// TODO Auto-generated constructor stub
 	}

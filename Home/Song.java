@@ -16,14 +16,15 @@ import javafx.util.Duration;
 
 public class Song implements Serializable {
 	private String name;
-	private String artist; //Change to artist class
+	public String artistName;
+	private Artist artist; //Change to artist class
 	private int year;
 	private Playlist Album; //Change to album class
 	private String Genre;// change to genre class
 	private static int likes =0;
-	
+
 	private String path;
-	
+
 	final JFXPanel fxP = new JFXPanel(); 
 	String bip;
 	Media hit; 
@@ -45,18 +46,7 @@ public class Song implements Serializable {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		//Song test = new Song("Robbery","Juice WRLD - Robbery (Lyrics).mp3");
-	//test.Play();
-	/*	Thread.sleep(10000);
-		test.Pause();
-		Thread.sleep(10000);
-		test.Play();*/
-	/*final JFXPanel fxP = new JFXPanel(); 
-	String bip = Song.getPath();
-	Media hit = new Media(new File(bip).toURI().toString());
-	MediaPlayer mediaPlayer = new MediaPlayer(hit);
-	mediaPlayer.play();*/
-		
+
 	}
 
 	public static int getLikes() {
@@ -65,9 +55,9 @@ public class Song implements Serializable {
 	public static void setLikes(int likes) {
 		Song.likes = likes;
 	}
-	public Song(String name, String artist, int year,Playlist Album, String path){
+	/*public Song(String name, String artist, int year,Playlist Album, String path){
 		this.name = name;
-		this.artist = artist;
+		this.artistName = artist;
 		this.year = year;
 		this.path = path;
 		this.bip = path;
@@ -78,8 +68,14 @@ public class Song implements Serializable {
 	/*	final JFXPanel fxP = new JFXPanel(); 
 		String bip = getPath();
 		Media hit = new Media(new File(bip).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(hit);*/
+		MediaPlayer mediaPlayer = new MediaPlayer(hit);
 
+	}*/
+
+	public Song(String Name, Artist artist, Album album) {
+		this.Album = album;
+		this.artist = artist;
+		this.name = Name;
 	}
 
 	public Song(String name, String path){
@@ -91,35 +87,35 @@ public class Song implements Serializable {
 		this.mediaPlayer = new MediaPlayer(hit);
 	}
 
-	/*public  MediaPlayer MediaPlayer() {
+	public  MediaPlayer MediaPlayer() {
 		final JFXPanel fxP = new JFXPanel(); 
 		Media hit = new Media(new File(this.path).toURI().toString());
-		
+
 		return new MediaPlayer(hit);
 	}
-*/
+	 
 
-	public boolean Play() {
-		
+	public void Play() {
+
 		if(mediaPlayer==null) {
-		//mediaPlayer = MediaPlayer();
-		mediaPlayer.play();
-		System.out.println(mediaPlayer.getTotalDuration());	
-		return true;
+			//mediaPlayer = MediaPlayer();
+			mediaPlayer.play();
+			System.out.println(mediaPlayer.getTotalDuration());	
+		
 		}
-		
+
 		else 	{
-	
-		
+
+
 			mediaPlayer.play();
 			System.out.println("This is coming from the second if statement");	
 			System.out.println(mediaPlayer.getTotalDuration());
 		}
-		return true;
+		
 	}
 	public void Stop() {
 		if(mediaPlayer != null)
-		mediaPlayer.stop();
+			mediaPlayer.stop();
 	}
 
 
@@ -135,10 +131,10 @@ public class Song implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getArtist() {
+	public Artist getArtist() {
 		return artist;
 	}
-	public void setArtist(String artist) {
+	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
 	public int getYear() {
@@ -167,10 +163,5 @@ public class Song implements Serializable {
 	public void setPath(String path) {
 		this.path = path;
 	}
-public boolean isPlaying() {
-	if (this.Play()==true) 
-		return true;
-	else return false;
 	
-}
 }
