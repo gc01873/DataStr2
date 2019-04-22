@@ -36,16 +36,16 @@ public class Itunes implements java.io.Serializable {
 
 	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
-	/*	Itunes itunes = new Itunes();
+		/*	Itunes itunes = new Itunes();
 		itunes.loadSongs();
 		itunes.displayAllSongs();
 		serializeContainer(itunes);*/
 
-		
+
 		Itunes itunes = deserializer();// Why is this duplicate variable
 		playStream(itunes.ArtistMap.get("Justo Betancourt").albums.get("Default"));
 		//playStream(itunes.AlbumMap.get("Default"));
-	
+		//playSong("Kanye West - Stronger");
 
 	}
 
@@ -111,14 +111,16 @@ public class Itunes implements java.io.Serializable {
 		JFXPanel jxp = new JFXPanel();
 
 	}
-/*	public static void playSong(String songName) {
-String file = System.getProperty("user dir");
-Player.mPlayer = new MediaPlayer(new Media(new File(file + "\\Home\\Muzic\\"+ songName + ".mp3")).toURI.toString();
-Player.mPlayer.setOnReady(new Runnable() {
+	/*public static void playSong(String songName) {
+		String file = System.getProperty("user.dir");
+		Player.mPlayer = new MediaPlayer(new Media(new File(file  +"//" +  songName + ".mp3").toURI().toString()));
+		Player.mPlayer.setOnReady(new Runnable() {	
+	}
 	public void run() {
-	Player.mPlayer.play();
-}
-	}*/
+		Player.mPlayer.play();
+
+	}
+*/
 	public void songSearch(String Search, Playlist playlist) {
 
 	}
