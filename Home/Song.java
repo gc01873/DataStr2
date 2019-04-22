@@ -9,12 +9,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
 
-import javafx.embed.swing.JFXPanel;
+//import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class Song implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	public String artistName;
 	private Artist artist; //Change to artist class
@@ -25,7 +26,7 @@ public class Song implements Serializable {
 
 	private String path;
 
-	final JFXPanel fxP = new JFXPanel(); 
+	//final JFXPanel fxP = new JFXPanel(); 
 	String bip;
 	Media hit; 
 	public Media getHit() {
@@ -82,13 +83,13 @@ public class Song implements Serializable {
 		this.name = name;
 		this.path = path;
 		this.bip = path;
-		final JFXPanel fxP = new JFXPanel(); ;
+	//	final JFXPanel fxP = new JFXPanel(); ;
 		this.hit = new Media(new File(bip).toURI().toString());
 		this.mediaPlayer = new MediaPlayer(hit);
 	}
 
 	public  MediaPlayer MediaPlayer() {
-		final JFXPanel fxP = new JFXPanel(); 
+		//final JFXPanel fxP = new JFXPanel(); 
 		Media hit = new Media(new File(this.path).toURI().toString());
 
 		return new MediaPlayer(hit);

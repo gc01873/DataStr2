@@ -1,8 +1,9 @@
 package Home;
 
 import java.io.Serializable;
-
-public class Album extends Playlist implements Serializable {
+import java.util.ArrayList;
+public class Album extends Playlist implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	public Album(String PlayListName) {
 		super(PlayListName);

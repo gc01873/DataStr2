@@ -1,25 +1,20 @@
 package Home;
 
 import java.io.Serializable;
+
 import java.util.ArrayList; 
-import java.util.Iterator;
+
 
 import javafx.scene.media.MediaPlayer.Status;
 
-public  class Playlist implements Serializable {
+public  class Playlist implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String PlayListName;
 	private ArrayList<Song> ListOfSongs= new ArrayList<Song>(); 
-//	public static Song NowPlaying;
-	public Iterator move = ListOfSongs.listIterator();
-	
-	public Iterator getMove() {
-		return move;
-	}
+
 	
 
-	public void setMove(Iterator move) {
-		this.move = move;
-	}
 
 	private int numOfSongs = 0;
 
