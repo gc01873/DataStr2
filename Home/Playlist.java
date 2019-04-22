@@ -50,9 +50,6 @@ public  class Playlist implements java.io.Serializable {
 		numOfSongs--;
 		return song;
 	}
-	public void Start() throws InterruptedException {
-		}
-	//}
 
 	public int getNumOfSongs() {
 		return numOfSongs;

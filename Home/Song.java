@@ -99,7 +99,7 @@ public class Song implements Serializable {
 	public void Play() {
 
 		if(mediaPlayer==null) {
-			//mediaPlayer = MediaPlayer();
+			mediaPlayer = MediaPlayer();
 			mediaPlayer.play();
 			System.out.println(mediaPlayer.getTotalDuration());	
 		

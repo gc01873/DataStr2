@@ -31,19 +31,22 @@ public class Itunes implements java.io.Serializable {
 
 
 	HashMap<String,Artist> ArtistMap = new HashMap<String, Artist>();
-Player play = new Player();
+	Player play = new Player();
 
 
 	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
-		/*Itunes itunes = new Itunes();
+	/*	Itunes itunes = new Itunes();
 		itunes.loadSongs();
 		itunes.displayAllSongs();
 		serializeContainer(itunes);*/
 
-	//	File file = new File("C:\\Users\\sm06156\\git\\DataStr22\\Home\\Muzic\\");
-		Itunes itunes = deserializer();// Why is this dup;icate variable
-		playStream(itunes.ArtistMap.get("Bryce Vine").albums.get("Default"));//what key is this/ starter album*/
+		
+		Itunes itunes = deserializer();// Why is this duplicate variable
+		playStream(itunes.ArtistMap.get("Justo Betancourt").albums.get("Default"));
+		//playStream(itunes.AlbumMap.get("Default"));
+	
+
 	}
 
 
@@ -58,8 +61,12 @@ Player play = new Player();
 	//may need to switch input to an album
 	public static void playStream(Playlist playlist) throws InterruptedException {
 		JFXPanel jxp = new JFXPanel();
+		System.out.println("Look!");
+
 		Player.mPlayer = new MediaPlayer(new Media(new File("C:\\Users\\sm06156\\git\\DataStr22\\Home\\Muzic\\" + playlist.getListOfSongs().get(0).getArtist().Name + " - " + 
-				playlist.getListOfSongs().get(0).getName() + ".mp3" ).toURI().toString()));//what file should be hereee
+				playlist.getListOfSongs().get(0).getName() + ".mp3" ).toURI().toString()));//what file should be hereee */
+
+		System.out.println("We got here");
 		for (int i = 0; i < playlist.getListOfSongs().size();i++ ) {
 			System.out.println(playlist.getListOfSongs().get(i).getName());
 			while(Player.mPlayer.getStatus().equals(Status.UNKNOWN)) {
@@ -68,19 +75,75 @@ Player play = new Player();
 			}
 			if(Player.mPlayer.getStatus().equals(Status.STOPPED)|| Player.mPlayer.getStatus().equals(Status.READY)) {
 				System.out.println("Stopped giving new Media");
+
 				Player.mPlayer = new MediaPlayer(new Media(new File("C:\\Users\\sm06156\\git\\DataStr22\\Home\\Muzic\\" + playlist.getListOfSongs().get(i).getArtist().Name + " - " + 
-						playlist.getListOfSongs().get(i).getName() + ".mp3").toURI().toString()));
+						playlist.getListOfSongs().get(i).getName() + ".mp3").toURI().toString())); 
+				System.out.println(playlist.getListOfSongs().get(i).getArtist().Name + " - " + playlist.getListOfSongs().get(i).getName() + ".mp3");
+				//	Player.mPlayer.play();
 				Thread.sleep(1000);
-			} else {
-				Player.mPlayer.play();
-			}
-			Player.mPlayer.setOnReady(new Runnable() {
-				public void run(){
+			} 
+			while(Player.mPlayer.getStatus().equals(Status.READY)|| Player.mPlayer.getStatus().equals(Status.PLAYING)) { 
+				if(Player.mPlayer.getStatus().equals(Status.PLAYING)) {
+					System.out.println("Sleeping");
+					Thread.sleep(1000);
+					Player.mPlayer.setOnEndOfMedia(new Runnable(){
+						public void run() {
+							Player.mPlayer.stop(); }
+					});
+				}
+				else {
 					Player.mPlayer.play();
 				}
-			});
+				Player.mPlayer.setOnReady(new Runnable() {
+					public void run(){
+						Player.mPlayer.play();
+					}
+				});
+				Player.mPlayer.setOnEndOfMedia(new Runnable(){
+					public void run() {
+						Player.mPlayer.stop(); }
+				});
+			}
 		}
 	}
+
+	public void nextSong() {
+		JFXPanel jxp = new JFXPanel();
+
+	}
+/*	public static void playSong(String songName) {
+String file = System.getProperty("user dir");
+Player.mPlayer = new MediaPlayer(new Media(new File(file + "\\Home\\Muzic\\"+ songName + ".mp3")).toURI.toString();
+Player.mPlayer.setOnReady(new Runnable() {
+	public void run() {
+	Player.mPlayer.play();
+}
+	}*/
+	public void songSearch(String Search, Playlist playlist) {
+
+	}
+
+
+
+
+	public static void pause() {
+		if(Player.mPlayer.getStatus().equals(Status.PLAYING)) {
+			Player.mPlayer.pause();
+			System.out.println("Player Paused from itunes!");
+		}
+		else
+		{System.out.println("Song is not paused");
+		}
+	}
+	public void stop() {
+		if(Player.mPlayer.getStatus().equals(Status.PLAYING)) {
+			{
+				Player.mPlayer.stop();
+				System.out.println("Media Player is Stopped From the Itunes app");
+			}
+		}
+	}
+
 	public void addSongs(String line) {
 		String[] p = line.split(" - ");
 		if(!ArtistMap.containsKey(p[0])) {
