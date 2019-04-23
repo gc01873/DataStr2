@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Map.Entry;
+
+//import application.Main;
+
 import java.util.Scanner;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
@@ -24,27 +27,28 @@ public class Itunes implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	 HashMap<String,Album> AlbumMap = new HashMap<String, Album>();
 
-
-	 HashMap<String,Artist> ArtistMap = new HashMap<String, Artist>();
-	Player play = new Player();
+	public HashMap<String,Album> AlbumMap = new HashMap<String, Album>();
+	public HashMap<String,Artist> ArtistMap = new HashMap<String, Artist>();
+  public	Player play = new Player();
 
 
 	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
-		/*	Itunes itunes = new Itunes();
+	/*	Itunes itunes = new Itunes();
 		itunes.loadSongs();
 		itunes.displayAllSongs();
 		serializeContainer(itunes);*/
 
 
-		Itunes itunes = deserializer();// Why is this duplicate variable
-		playStream(itunes.ArtistMap.get("Bryce Vine").albums.get("Default"));
+			Itunes itunes = deserializer();// Why is this duplicate variable
+		//playStream(itunes.ArtistMap.get("Bryce Vine").getAlbums().get("Default"));
 		//playStream(itunes.AlbumMap.get("Default"));
 		//playSong("Kanye West - Stronger");
 		//itunes.songSearch("Default");
+		System.out.println(itunes.displayArtists());
+		System.out.println(itunes.ArtistMap.values());
+		System.out.println(itunes.AlbumMap.values());
 
 	}
 
@@ -119,23 +123,23 @@ public class Itunes implements java.io.Serializable {
 		Player.mPlayer.play();
 
 	}
-*/
+	 */
 	public  void songSearch(String Search) throws InterruptedException {
-if(ArtistMap.containsKey(Search)) {
-	System.out.println("Found Artist");
-	playStream(ArtistMap.get(Search).albums.get("Default")); //May have to work on default
-}
-else if(AlbumMap.containsKey(Search)) {
-	System.out.println("Found Album!");
-	playStream(AlbumMap.get(Search));
-}
-/*if(!ArtistMap.containsKey(Search) && !AlbumMap.containsKey(Search)) {
+		if(ArtistMap.containsKey(Search)) {
+			System.out.println("Found Artist");
+			playStream(ArtistMap.get(Search).getAlbums().get("Default")); //May have to work on default
+		}
+		else if(AlbumMap.containsKey(Search)) {
+			System.out.println("Found Album!");
+			playStream(AlbumMap.get(Search));
+		}
+		/*if(!ArtistMap.containsKey(Search) && !AlbumMap.containsKey(Search)) {
 	for(Song sSong :Playlist.getListOfSongs()) {
 		if(sSong.getName()==this.getName()) {
 			sSong.Play();
 		}
 }
-	*/
+		 */
 	}
 
 
@@ -158,8 +162,14 @@ else if(AlbumMap.containsKey(Search)) {
 			}
 		}
 	}
+	public String DisplayArtists() {
+		ArrayList<String> artists = new ArrayList<String>();
+		for(Map.Entry<String, Artist>temp: this.ArtistMap.entrySet()){
+			artists.add(temp.getKey());
+		}
+		return artists.toString();
+	}
 
-	
 	public ArrayList<String> displayArtists() {
 		ArrayList<String> artists = new ArrayList<String>();
 		for(Map.Entry<String, Artist>temp: this.ArtistMap.entrySet()){
@@ -167,21 +177,21 @@ else if(AlbumMap.containsKey(Search)) {
 		}
 		return artists;
 	}
-	
+
 	public void addSongs(String line) {
 		String[] p = line.split(" - ");
 		if(!ArtistMap.containsKey(p[0])) {
 			ArtistMap.put(p[0], new Artist(p[0]));
-			ArtistMap.get(p[0]).albums.put("Default", new Album("Default",p[1])) ;
+			ArtistMap.get(p[0]).getAlbums().put("Default", new Album("Default",p[1])) ;
 		}
 
-		ArtistMap.get(p[0]).albums.get("Default").getListOfSongs().add(new Song(p[1],ArtistMap.get(p[0]),ArtistMap.get(p[0]).albums.get("Default")));
+		ArtistMap.get(p[0]).getAlbums().get("Default").getListOfSongs().add(new Song(p[1],ArtistMap.get(p[0]),ArtistMap.get(p[0]).getAlbums().get("Default")));
 	}
 
 	public void displayAllSongs() {
 		for(Map.Entry<String, Artist>temp:ArtistMap.entrySet()) {
 			Artist artistTemp = temp.getValue();
-			for(Map.Entry<String, Album> tempAlbum : artistTemp.albums.entrySet()) {
+			for(Map.Entry<String, Album> tempAlbum : artistTemp.getAlbums().entrySet()) {
 				Album tempAlb = tempAlbum.getValue();
 				for(Song s : tempAlb.getListOfSongs()) {
 					System.out.println(artistTemp.getName() + " " + tempAlb.AlbumName+ " " + s.getName());

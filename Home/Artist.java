@@ -8,7 +8,7 @@ public class Artist implements Serializable {
 	public String Name;
 	public Playlist Discography = new Playlist(Name + " Discography ");
 	int numOfArtistSongs = Discography.getNumOfSongs();
-	HashMap <String, Album> albums = new HashMap <String, Album>();
+	private HashMap <String, Album> albums = new HashMap <String, Album>();
 	
 
 	public void addDisco() {
@@ -33,6 +33,12 @@ public class Artist implements Serializable {
 	}
 	public void setDiscography(Playlist discography) {
 		Discography = discography;
+	}
+	public HashMap <String, Album> getAlbums() {
+		return albums;
+	}
+	public void setAlbums(HashMap <String, Album> albums) {
+		this.albums = albums;
 	}
 
 }
