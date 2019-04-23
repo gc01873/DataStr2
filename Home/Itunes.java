@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 //import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -23,14 +24,11 @@ public class Itunes implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//Song CurrentlyPlaying ;
-	//MediaPlayer ItunesPlayer = new MediaPlayer(CurrentlyPlaying.getHit());
-	//MediaView Viewer = new MediaView (ItunesPlayer);
-	//Playlist Library = new Playlist("Music Library");
-	HashMap<String,Album> AlbumMap = new HashMap<String, Album>();
+	
+	 HashMap<String,Album> AlbumMap = new HashMap<String, Album>();
 
 
-	HashMap<String,Artist> ArtistMap = new HashMap<String, Artist>();
+	 HashMap<String,Artist> ArtistMap = new HashMap<String, Artist>();
 	Player play = new Player();
 
 
@@ -43,9 +41,10 @@ public class Itunes implements java.io.Serializable {
 
 
 		Itunes itunes = deserializer();// Why is this duplicate variable
-		playStream(itunes.ArtistMap.get("Justo Betancourt").albums.get("Default"));
+		playStream(itunes.ArtistMap.get("Bryce Vine").albums.get("Default"));
 		//playStream(itunes.AlbumMap.get("Default"));
 		//playSong("Kanye West - Stronger");
+		//itunes.songSearch("Default");
 
 	}
 
@@ -60,7 +59,7 @@ public class Itunes implements java.io.Serializable {
 
 	//may need to switch input to an album
 	public static void playStream(Playlist playlist) throws InterruptedException {
-		JFXPanel jxp = new JFXPanel();
+		//JFXPanel jxp = new JFXPanel();
 		System.out.println("Look!");
 
 		Player.mPlayer = new MediaPlayer(new Media(new File("C:\\Users\\sm06156\\git\\DataStr22\\Home\\Muzic\\" + playlist.getListOfSongs().get(0).getArtist().Name + " - " + 
@@ -121,8 +120,22 @@ public class Itunes implements java.io.Serializable {
 
 	}
 */
-	public void songSearch(String Search, Playlist playlist) {
-
+	public  void songSearch(String Search) throws InterruptedException {
+if(ArtistMap.containsKey(Search)) {
+	System.out.println("Found Artist");
+	playStream(ArtistMap.get(Search).albums.get("Default")); //May have to work on default
+}
+else if(AlbumMap.containsKey(Search)) {
+	System.out.println("Found Album!");
+	playStream(AlbumMap.get(Search));
+}
+/*if(!ArtistMap.containsKey(Search) && !AlbumMap.containsKey(Search)) {
+	for(Song sSong :Playlist.getListOfSongs()) {
+		if(sSong.getName()==this.getName()) {
+			sSong.Play();
+		}
+}
+	*/
 	}
 
 
@@ -146,6 +159,15 @@ public class Itunes implements java.io.Serializable {
 		}
 	}
 
+	
+	public ArrayList<String> displayArtists() {
+		ArrayList<String> artists = new ArrayList<String>();
+		for(Map.Entry<String, Artist>temp: this.ArtistMap.entrySet()){
+			artists.add(temp.getKey());
+		}
+		return artists;
+	}
+	
 	public void addSongs(String line) {
 		String[] p = line.split(" - ");
 		if(!ArtistMap.containsKey(p[0])) {

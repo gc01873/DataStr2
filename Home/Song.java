@@ -18,15 +18,15 @@ public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String name;
 	public String artistName;
-	private Artist artist; //Change to artist class
-	private int year;
-	private Playlist Album; //Change to album class
-	private String Genre;// change to genre class
-	private static int likes =0;
+	private Artist artist; 
+
+	private Playlist Album; 
+
+
 
 	private String path;
 
-	//final JFXPanel fxP = new JFXPanel(); 
+	
 	String bip;
 	Media hit; 
 	public Media getHit() {
@@ -50,12 +50,7 @@ public class Song implements Serializable {
 
 	}
 
-	public static int getLikes() {
-		return likes;
-	}
-	public static void setLikes(int likes) {
-		Song.likes = likes;
-	}
+	
 	/*public Song(String name, String artist, int year,Playlist Album, String path){
 		this.name = name;
 		this.artistName = artist;
@@ -83,13 +78,13 @@ public class Song implements Serializable {
 		this.name = name;
 		this.path = path;
 		this.bip = path;
-	//	final JFXPanel fxP = new JFXPanel(); ;
+	
 		this.hit = new Media(new File(bip).toURI().toString());
 		this.mediaPlayer = new MediaPlayer(hit);
 	}
 
 	public  MediaPlayer MediaPlayer() {
-		//final JFXPanel fxP = new JFXPanel(); 
+	
 		Media hit = new Media(new File(this.path).toURI().toString());
 
 		return new MediaPlayer(hit);
@@ -138,23 +133,12 @@ public class Song implements Serializable {
 	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
+	
 	public Playlist getAlbum() {
 		return Album;
 	}
 	public void setAlbum(Playlist playlist) {
 		Album = playlist;
-	}
-	public String getGenre() {
-		return Genre;
-	}
-	public void setGenre(String genre) {
-		Genre = genre;
 	}
 
 	public String getPath() {

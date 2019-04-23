@@ -20,10 +20,7 @@ public  class Playlist implements java.io.Serializable {
 
 	public static void main(String[] args)  {
 	
-		Playlist First = new Playlist("SongLibrary");
-		/* This must be changed to create a songs from a song library from a song library
-		 * Using a for loop to add all of the songs to.
-		 */
+		
 	}
 	public Playlist(String PlayListName) {
 		this.PlayListName = PlayListName;
@@ -35,13 +32,13 @@ public  class Playlist implements java.io.Serializable {
 	}
 	public void AddSong(Song song) {
 		ListOfSongs.add(song);
-		//song.setAlbum(this); save for album class
+		song.setAlbum(this); 
 		numOfSongs++;
 	}
 	public void AddSong(String name, String path) {
 		Song song = new Song(name,path);
 		ListOfSongs.add(song);
-		//song.setAlbum(this); save for album class
+		song.setAlbum(this);
 		numOfSongs++;
 	}
 
