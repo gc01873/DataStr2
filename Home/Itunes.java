@@ -30,26 +30,26 @@ public class Itunes implements java.io.Serializable {
 
 	public HashMap<String,Album> AlbumMap = new HashMap<String, Album>();
 	public HashMap<String,Artist> ArtistMap = new HashMap<String, Artist>();
-  public	Player play = new Player();
+	public	Player play = new Player();
 
 
 	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
-	/*	Itunes itunes = new Itunes();
+		/*	Itunes itunes = new Itunes();
 		itunes.loadSongs();
 		itunes.displayAllSongs();
 		serializeContainer(itunes);*/
 
 
-			Itunes itunes = deserializer();// Why is this duplicate variable
-		//playStream(itunes.ArtistMap.get("Bryce Vine").getAlbums().get("Default"));
+		Itunes itunes = deserializer();// Why is this duplicate variable
+		playStream(itunes.ArtistMap.get("Justo Betancourt").getAlbums().get("Default"));
 		//playStream(itunes.AlbumMap.get("Default"));
 		//playSong("Kanye West - Stronger");
 		//itunes.songSearch("Default");
 		System.out.println(itunes.displayArtists());
 		System.out.println(itunes.ArtistMap.values());
 		System.out.println(itunes.AlbumMap.values());
-
+		System.out.println(itunes.ArtistMap.get("Bryce Vine").getAlbums());
 	}
 
 
@@ -63,7 +63,7 @@ public class Itunes implements java.io.Serializable {
 
 	//may need to switch input to an album
 	public static void playStream(Playlist playlist) throws InterruptedException {
-		//JFXPanel jxp = new JFXPanel();
+		JFXPanel jxp = new JFXPanel();
 		System.out.println("Look!");
 
 		Player.mPlayer = new MediaPlayer(new Media(new File("C:\\Users\\sm06156\\git\\DataStr22\\Home\\Muzic\\" + playlist.getListOfSongs().get(0).getArtist().Name + " - " + 
